@@ -1,9 +1,13 @@
 'use strict';
+
 const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
 
+// =============================================================================
+
 module.exports = class extends Generator {
+  // ---------------------------------------------------------------------------
   prompting() {
     // Have Yeoman greet the user.
     this.log(
@@ -13,8 +17,9 @@ module.exports = class extends Generator {
     const prompts = [
       {
         type: 'confirm',
-        name: 'someAnswer',
-        message: 'Would you like to enable this option?',
+        name: 'placeInSubdirectory',
+        message:
+          'Place the favicon files inside a subdirectory named "favicon", at project root?',
         default: true
       }
     ];
@@ -25,14 +30,17 @@ module.exports = class extends Generator {
     });
   }
 
+  // ---------------------------------------------------------------------------
   writing() {
-    this.fs.copy(
-      this.templatePath('dummyfile.txt'),
-      this.destinationPath('dummyfile.txt')
-    );
+    if (this.props.placeInSubdirectory === true) {
+      this.fs.copy(this.templatePath('favicon/'), this.destinationPath('favicon/'));
+    } else {
+      this.fs.copy(this.templatePath('favicon/'), this.destinationPath('./'));
+    }
   }
 
+  // ---------------------------------------------------------------------------
   install() {
-    this.installDependencies();
+    // This.installDependencies();
   }
 };
