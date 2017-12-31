@@ -1,6 +1,6 @@
 {
   "name": "generator-mdb-favicons",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description":
     "Personal Yeoman generator that inserts all of my personal favicons into the current project.",
   "homepage": "https://github.com/matt-daniel-brown/generator-mdb-favicons",
